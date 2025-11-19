@@ -61,6 +61,14 @@ public class StudentImplementation implements StudentOperations {
     // -----------------------------------------------------
     @Override
     public student removestudent(int sid) {
+    	 for (student s : list) {
+             if (s.getSid() == sid) {
+                 list.remove(s);
+                 System.out.println("Student removed ID: " + sid);
+                 return s;
+             }
+         }
+
 		return null;
 
     }
@@ -70,6 +78,11 @@ public class StudentImplementation implements StudentOperations {
     // -----------------------------------------------------
     @Override
     public student containsstudent(String name) {
+    	 for (student s : list) {
+             if (s.getName().equalsIgnoreCase(name)) {
+                 return s;
+             }
+         }
 		return null;
 
 
@@ -78,8 +91,19 @@ public class StudentImplementation implements StudentOperations {
     // -----------------------------------------------------
     // 6. FIND STUDENT WITH HIGHEST AGE
     // -----------------------------------------------------
-    @Override
+    @SuppressWarnings("unused")
+	@Override
     public student highestagestudent(int age) {
+    	student max = null;
+        int maxAge = -1;
+
+        for (student s : list) {
+            if (s.getAge() > maxAge) {
+                maxAge = s.getAge();
+                max = s;
+            }
+        }
+
 		return null;
 
      
