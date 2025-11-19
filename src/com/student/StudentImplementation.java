@@ -1,41 +1,111 @@
 package com.student;
 
-public class StudentImplementation  implements StudentOperations {
+import java.util.ArrayList;
+import java.util.List;
 
-	@Override
-	public student addstudent(int sid) {
-		// TODO Auto-generated method stub
+public class StudentImplementation implements StudentOperations {
+
+    // ArrayList to store all students
+    List<student> list = new ArrayList<>();
+
+    // -----------------------------------------------------
+    // 1. ADD STUDENT
+    // -----------------------------------------------------
+    @Override
+    public student addstudent(int sid) {
+
+        // Create student with default name and age
+        student s = new student(sid, "Student_" + sid, 20);
+
+        list.add(s);
+
+        System.out.println("Student added: " + s.getSid() + " - " + s.getName());
+        return s;
+    }
+
+    // -----------------------------------------------------
+    // 2. GET STUDENT BY NAME
+    // -----------------------------------------------------
+    @Override
+    public student getstudent(String name) {
+
+        for (student s : list) {
+            if (s.getName().equalsIgnoreCase(name)) {
+                return s;
+            }
+        }
+        return null;  // Not found
+    }
+
+    // -----------------------------------------------------
+    // 3. SET STUDENT (update student details)
+    // -----------------------------------------------------
+    @Override
+    public student setstudent(String name, int sid, int age) {
+
+        for (student s : list) {
+            if (s.getName().equalsIgnoreCase(name)) {
+
+                s.setSid(sid);
+                s.setAge(age);
+
+                System.out.println("Student updated: " + name);
+                return s;
+            }
+        }
+        return null; // Not found
+    }
+
+    // -----------------------------------------------------
+    // 4. REMOVE STUDENT
+    // -----------------------------------------------------
+    @Override
+    public student removestudent(int sid) {
+    	
+        for (student s : list) {
+            if (s.getSid() == sid) {
+                list.remove(s);
+                System.out.println("Student removed ID: " + sid);
+                return s;
+            }
+        }
 		return null;
-	}
 
-	@Override
-	public student getstudent(String name) {
-		// TODO Auto-generated method stub
+    }
+
+    // -----------------------------------------------------
+    // 5. CHECK IF STUDENT NAME EXISTS (containsStudent)
+    // -----------------------------------------------------
+    @Override
+    public student containsstudent(String name) {
+    	 for (student s : list) {
+             if (s.getName().equalsIgnoreCase(name)) {
+                 return s;
+             }
+         }
+
 		return null;
-	}
 
-	@Override
-	public student setstudent(String name, int sid, int age) {
-		// TODO Auto-generated method stub
+
+    }
+
+    // -----------------------------------------------------
+    // 6. FIND STUDENT WITH HIGHEST AGE
+    // -----------------------------------------------------
+    @Override
+    public student highestagestudent(int age) {
+    	 student max = null;
+         int maxAge = -1;
+
+         for (student s : list) {
+             if (s.getAge() > maxAge) {
+                 maxAge = s.getAge();
+                 max = s;
+             }
+         }
+
 		return null;
-	}
 
-	@Override
-	public student removestudent(int sid) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public student containsstudent(String name) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public student highestagestudent(int age) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
+     
+    }
 }
