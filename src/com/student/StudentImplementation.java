@@ -94,7 +94,9 @@ public class StudentImplementation implements StudentOperations {
     // -----------------------------------------------------
     @Override
     public student highestagestudent(int age) {
-    	 student max = null;
+    	
+    	 @SuppressWarnings("unused")
+		 student max = null;
          int maxAge = -1;
 
          for (student s : list) {
